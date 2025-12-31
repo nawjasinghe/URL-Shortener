@@ -68,7 +68,9 @@
     <tbody>
     <tr th:each="url : ${shortenedUrls}">
         <td th:text="${url.id}"></td>
-        <td th:text="${url.shortKey}"></td>
+        <td>
+        <a th:href="@{'/' + ${url.shortKey}}" th:text="'http://localhost:8080/' + ${url.shortKey}"></a>
+        </td>
         <td>
             <a th:href="${url.originalUrl}"
                th:text="${url.originalUrl}"
