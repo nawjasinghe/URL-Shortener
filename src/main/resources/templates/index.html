@@ -5,10 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
-    <form action="/shorten" method="post">
-        <input type="url" name="originalUrl" placeholder="Enter your URL" required>
-        <button type="submit">Shorten</button>
-    </form>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +16,22 @@
         h1 {
             color: #333;
             text-align: center;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
         table {
             width: 100%;
@@ -56,6 +68,11 @@
 <body>
 <h1>Shortened URLs</h1>
 
+<form action="/shorten" method="post">
+    <input type="text" name="originalUrl" placeholder="Enter your URL" required>
+    <button type="submit">Shorten</button>
+</form>
+
 <div th:if="${shortenedUrls.isEmpty()}" class="empty-message">
     <p>No URLs have been shortened yet.</p>
 </div>
@@ -73,7 +90,7 @@
     <tr th:each="url : ${shortenedUrls}">
         <td th:text="${url.id}"></td>
         <td>
-        <a th:href="@{'/' + ${url.shortKey}}" th:text="'http://localhost:8080/' + ${url.shortKey}"></a>
+            <a th:href="@{'/' + ${url.shortKey}}" th:text="'http://localhost:8080/' + ${url.shortKey}"></a>
         </td>
         <td>
             <a th:href="${url.originalUrl}"
