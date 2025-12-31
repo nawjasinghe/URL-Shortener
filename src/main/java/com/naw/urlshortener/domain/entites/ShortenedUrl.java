@@ -30,6 +30,15 @@ public class ShortenedUrl {
    @Column(name = "click_count")
    private Long clickCount = 0L;
 
+   public ShortenedUrl() {
+   }
+    // constructor for getting a shortened URL
+   public ShortenedUrl(String originalUrl, String shortKey) {
+       this.originalUrl = originalUrl;
+       this.shortKey = shortKey;
+       this.createdAt = LocalDateTime.now();
+   }
+
    // Getters and Setters
    public Long getId() {
         return id;

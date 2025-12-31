@@ -1,3 +1,6 @@
+/*
+HARCODED DATA FOR TESTING PURPOSES
+
 INSERT INTO shortened_urls (short_key, original_url, is_private, expires_at, click_count, created_at)
 VALUES ('ggl123', 'https://www.google.com', false, NULL, 150, '2024-07-15 00:00:00'),
        ('ytube1', 'https://www.youtube.com', false, NULL, 245, '2024-07-16 00:00:00'),
@@ -18,3 +21,4 @@ VALUES ('ggl123', 'https://www.google.com', false, NULL, 150, '2024-07-15 00:00:
        ('msft01', 'https://www.microsoft.com', false, NULL, 34, '2024-08-02 00:00:00'),
        ('apple1', 'https://www.apple.com', false, NULL, 67, '2024-08-03 00:00:00');
 
+*/
