@@ -11,7 +11,7 @@ A Spring Boot web app that takes long URLs and generates unique short links. The
 - Displays all shortened URLs in a clean, organized table
 - Clickable short links that redirect to the original URLs
 - URL normalization (automatically adds https:// if missing)
-- URL validation (checks format)
+- URL validation (checks format and domain structure)
 - Duplicate detection to avoid creating multiple entries for the same URL
 - Update existing shortened URLs with new destinations
 - Delete shortened URLs when no longer needed
