@@ -1,5 +1,6 @@
 package com.naw.urlshortener.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import com.naw.urlshortener.services.URLShortenService;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping
-public class UrlController {
+public class UrlController{
 
     private final URLShortenService urlService;
 
@@ -31,5 +32,22 @@ public class UrlController {
         urlService.shortenURL(originalUrl);
         // redirect back to homepage to see the updated lisst
         return "redirect:/";
+    }
+
+    @PostMapping("/update/{shortKey}")
+    public String updateUrl(@PathVariable String shortKey, @RequestParam String newOriginalUrl){
+        urlService.updateUrl(shortKey, newOriginalUrl);
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete/{shortKey}")
+    public String deleteUrl(@PathVariable String shortKey){
+        urlService.deleteUrl(shortKey);
+        return "redirect:/";
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleInvalidUrl(IllegalArgumentException ex){
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 }

@@ -1,105 +1,55 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        form {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            margin-right: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        a {
-            color: #2196F3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .empty-message {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        h1 { text-align: center; }
+        form { text-align: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background-color: white; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        input[type="text"] { padding: 8px; width: 300px; }
+        button { padding: 8px 15px; cursor: pointer; background-color: #4CAF50; color: white; border: none; }
+        .btn-delete { background-color: #f44336; }
+        a { color: #2196F3; text-decoration: none; }
     </style>
 </head>
 <body>
-<h1>Shortened URLs</h1>
+<h1>URL Shortener</h1>
 
 <form action="/shorten" method="post">
     <input type="text" name="originalUrl" placeholder="Enter your URL" required>
     <button type="submit">Shorten</button>
 </form>
 
-<div th:if="${shortenedUrls.isEmpty()}" class="empty-message">
-    <p>No URLs have been shortened yet.</p>
-</div>
+<p th:if="${shortenedUrls.isEmpty()}" style="text-align:center;">No URLs yet.</p>
 
 <table th:unless="${shortenedUrls.isEmpty()}">
-    <thead>
     <tr>
         <th>ID</th>
-        <th>Short Key</th>
+        <th>Short URL</th>
         <th>Original URL</th>
         <th>Created At</th>
+        <th>Actions</th>
     </tr>
-    </thead>
-    <tbody>
     <tr th:each="url : ${shortenedUrls}">
         <td th:text="${url.id}"></td>
+        <td><a th:href="@{'/' + ${url.shortKey}}" th:text="'localhost:8080/' + ${url.shortKey}"></a></td>
         <td>
-            <a th:href="@{'/' + ${url.shortKey}}" th:text="'http://localhost:8080/' + ${url.shortKey}"></a>
-        </td>
-        <td>
-            <a th:href="${url.originalUrl}"
-               th:text="${url.originalUrl}"
-               target="_blank"></a>
+            <form th:action="@{'/update/' + ${url.shortKey}}" method="post" style="display:inline;">
+                <input type="text" name="newOriginalUrl" th:value="${url.originalUrl}" style="width:250px;">
+                <button type="submit">Save</button>
+            </form>
         </td>
         <td th:text="${#temporals.format(url.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+        <td>
+            <form th:action="@{'/delete/' + ${url.shortKey}}" method="post" style="display:inline;">
+                <button type="submit" class="btn-delete" onclick="return confirm('Delete?')">Delete</button>
+            </form>
+        </td>
     </tr>
-    </tbody>
 </table>
 </body>
 </html>

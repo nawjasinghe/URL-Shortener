@@ -10,20 +10,18 @@ import org.springframework.web.server.ResponseStatusException;
 
 //controller handling redirects from short URLs to original URLs.
 @Controller
-public class RedirectController {
+public class RedirectController{
 
     private final ShortRepository shortRepository;
 
-    public RedirectController(ShortRepository shortRepository) {
+    public RedirectController(ShortRepository shortRepository){
         this.shortRepository = shortRepository;
     }
 
     @GetMapping("/{shortKey}")
-    public String redirect(@PathVariable String shortKey) {
+    public String redirect(@PathVariable String shortKey){
         // look up the short key in the database
-        ShortenedUrl shortenedUrl = shortRepository.findByShortKey(shortKey)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Short URL not found"));
-
+        ShortenedUrl shortenedUrl = shortRepository.findByShortKey(shortKey).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Short URL not found"));
         return "redirect:" + shortenedUrl.getOriginalUrl();
     }
 }

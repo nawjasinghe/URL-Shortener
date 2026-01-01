@@ -1,7 +1,6 @@
 package com.naw.urlshortener.domain.entites;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,10 +29,10 @@ public class ShortenedUrl {
    @Column(name = "click_count")
    private Long clickCount = 0L;
 
-   public ShortenedUrl() {
+   public ShortenedUrl(){
    }
     // constructor for getting a shortened URL
-   public ShortenedUrl(String originalUrl, String shortKey) {
+   public ShortenedUrl(String originalUrl, String shortKey){
        this.originalUrl = originalUrl;
        this.shortKey = shortKey;
        this.createdAt = LocalDateTime.now();
