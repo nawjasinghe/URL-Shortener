@@ -116,10 +116,10 @@ The `shortened_urls` table contains:
 | id | BIGINT | Primary key (auto-generated) |
 | original_url | VARCHAR | The original long URL |
 | short_key | VARCHAR | The unique 6-character short key |
-| is_private | BOOLEAN | Whether the URL is private | (Work in Progress)
+| is_private | BOOLEAN | Whether the URL is private (Work in Progress)| 
 | created_at | TIMESTAMP | When the URL was created |
-| expires_at | TIMESTAMP | Expiration date (optional) | (Work in Progress)
-| click_count | BIGINT | Number of times the link was clicked | (Work in Progress)
+| expires_at | TIMESTAMP | Expiration date (optional) (Work in Progress) | 
+| click_count | BIGINT | Number of times the link was clicked (Work in Progress) | 
 
 ## How It Works
 
