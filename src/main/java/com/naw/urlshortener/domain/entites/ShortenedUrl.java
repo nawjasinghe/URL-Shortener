@@ -80,11 +80,4 @@ public class ShortenedUrl {
    public void setExpiresAt(LocalDateTime expiresAt) {
         this.expiresAt = expiresAt;
    }
-
-   public Long getClickCount() {
-        return clickCount;
-   }
-   public void setClickCount(Long clickCount) {
-        this.clickCount = clickCount;
-   }
 }
