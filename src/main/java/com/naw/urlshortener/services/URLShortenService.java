@@ -22,7 +22,7 @@ public class URLShortenService{
 
     public ShortenedUrl shortenURL(String originalUrl){
         // validate URL first
-        if (!isValidUrl(originalUrl)){
+        if(!isValidUrl(originalUrl)){
             throw new IllegalArgumentException("Invalid URL provided");
         }
 
@@ -72,7 +72,7 @@ public class URLShortenService{
             String host = uri.getHost();
             // check host exists and contains at least one dot (basic domain check)
             return host != null && host.contains(".");
-        }catch (Exception e){
+        }catch(Exception e){
             return false;
         }
     }
