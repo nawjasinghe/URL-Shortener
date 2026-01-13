@@ -3,7 +3,6 @@ package com.naw.urlshortener.services;
 import com.naw.urlshortener.domain.entites.ShortenedUrl;
 import com.naw.urlshortener.domain.entites.respositories.ShortRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 
