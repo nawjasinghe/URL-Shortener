@@ -32,7 +32,6 @@ A Spring Boot web app that takes long URLs and generates unique short links. The
 - Maven
 - Docker Desktop
 
-
 ## Getting Started
 
 ### 1. Start the PostgreSQL Database
